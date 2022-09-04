@@ -81,5 +81,29 @@ namespace AddressBook
                 Console.WriteLine(c.ToString());
             }
         }
+        public void SortByCity()
+        {
+            contactList.Sort((contact1, contact2) => contact1.city.CompareTo(contact2.city));
+            foreach (Contact c in contactList)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public void SortByState()
+        {
+            contactList.Sort((contact1, contact2) => contact1.state.CompareTo(contact2.state));
+            foreach (Contact c in contactList)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public void SortByZipCode()
+        {
+            contactList.Sort((contact1, contact2) => contact1.zipCode.CompareTo(contact2.zipCode));
+            foreach (Contact c in contactList)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
     }
 }

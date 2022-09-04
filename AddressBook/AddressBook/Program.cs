@@ -8,6 +8,7 @@ namespace AddressBook
         static void Main(string[] args)
         {
             Dictionary<string, AddressBookBuilder> addressBookDict = new Dictionary<string, AddressBookBuilder>();
+            int countOfPersonsInState = 0, countOfPersonsInCity = 0;
             Console.WriteLine("How many address Book you want to add");
             int numAddressBook = Convert.ToInt32(Console.ReadLine());
             for (int i = 1; i <= numAddressBook; i++)
@@ -50,6 +51,7 @@ namespace AddressBook
                 if (place.Equals("c"))
                 {
                     listOfPersonsinPlace = element.Value.findPersonsInCity(findPlace);
+                    countOfPersonsInCity += element.Value.findNumberOfPersonsInCity(findPlace);
                     foreach (var name in listOfPersonsinPlace)
                     {
                         if (!dictionaryCity.ContainsKey(findPlace))
@@ -65,6 +67,7 @@ namespace AddressBook
                 else
                 {
                     listOfPersonsinPlace = element.Value.findPersonsInState(findPlace);
+                    countOfPersonsInState += element.Value.findNumberOfPersonsInState(findPlace);
                     foreach (var name in listOfPersonsinPlace)
                     {
                         if (!dictionaryState.ContainsKey(findPlace))
@@ -100,6 +103,8 @@ namespace AddressBook
                     }
                 }
             }
+            Console.WriteLine("No. of person in city: " + countOfPersonsInCity);
+            Console.WriteLine("No. of person in city: " + countOfPersonsInState);
         }
         public static void takeInputAndAddToContacts(AddressBookBuilder addressBook)
         {

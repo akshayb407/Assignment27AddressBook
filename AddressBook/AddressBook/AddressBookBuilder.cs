@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 namespace AddressBook
 {
-    class AddressBookBuilder : IContacts
+   public class AddressBookBuilder : AddressBookBuilderBase, IContacts
     {
-        public Dictionary<string, Contacts> dictionary;
         public AddressBookBuilder()
         {
             this.dictionary = new Dictionary<string, Contacts>();
@@ -74,26 +73,6 @@ namespace AddressBook
             {
                 Console.WriteLine("Contact not found!");
             }
-        }
-
-        public void addContact()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void displayContacts()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void editContact(string firstName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void deleteContact(string firstName)
-        {
-            throw new NotImplementedException();
         }
     }
 }

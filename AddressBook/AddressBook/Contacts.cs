@@ -3,29 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace AddressBook
 {
-    class Contacts
+    public class Contact
     {
-        public string FirstName { get; set; }
-        public string LastName;
-        public string Address;
-        public string City;
-        public string State;
-        public string Zip;
-        public string PhoneNumber;
-        public string Email;
-        public Contacts(string FirstName, string LastName, string Address, string City, string State, string Zip, string PhoneNumber, string Email)
+        public string firstName, lastName, address, city, state, zipCode, phoneNo, emailId;
+
+        public Contact()
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Address = Address;
-            this.City = City;
-            this.State = State;
-            this.Zip = Zip;
-            this.PhoneNumber = PhoneNumber;
-            this.Email = Email;
+            firstName = "";
+            lastName = "";
+            address = "";
+            city = "";
+            state = "";
+            zipCode = "";
+            phoneNo = "";
+            emailId = "";
         }
+        public Contact(string firstName, string lastName, string address, string city, string state, string zipCode, string phoneNo, string emailId)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.address = address;
+            this.city = city;
+            this.state = state;
+            this.zipCode = zipCode;
+            this.phoneNo = phoneNo;
+            this.emailId = emailId;
+        }
+        public override string ToString()
+        {
+            return "Name :" + firstName + " " + lastName + "\nAddress :" + address + "   ZipCode :" + zipCode + "\nPhone No :" + phoneNo + "   Email :" + emailId;
+        }
+
     }
 }

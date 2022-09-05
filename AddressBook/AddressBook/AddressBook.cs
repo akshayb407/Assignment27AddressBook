@@ -6,104 +6,60 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    class AddressBook
+    internal class Addressbook
     {
-        public List<Contact> contactList;
+        List<Address> addresses;
 
-
-        public AddressBook()
+        public Addressbook(Address addr)
         {
-            contactList = new List<Contact>();
-
+            addresses = new List<Address>();
         }
-        public string AddContact(string firstName, string lastName, string address, string city, string state, string zipCode, string phoneNo, string emailId)
-        {
-            if (CheckName(firstName, lastName) == false)
-            {
-                Contact contact = new Contact(firstName, lastName, address, city, state, zipCode, phoneNo, emailId);
-                contactList.Add(contact);
-                return "Details Added Successfully";
-            }
-            return "Name already exists";
-        }
-        public void EditContact(string firstName, string lastName, string address, string city, string state, string zipCode, string phoneNo, string emailId)
-        {
-            foreach (Contact c in contactList)
-            {
-                if (c.firstName.Equals(firstName))
-                {
-                    c.lastName = lastName;
-                    c.address = address;
-                    c.city = city;
-                    c.state = state;
-                    c.zipCode = zipCode;
-                    c.phoneNo = phoneNo;
-                    c.emailId = emailId;
 
-                    return;
-                }
-            }
-        }
-        public void RemoveContact(string firstName, string lastName)
+        public bool Add(string fName, string lName, string addr, string ct, string st, string zip, long phNum, string eMail)
         {
-            foreach (Contact c in contactList)
-            {
-                if (c.firstName.Equals(firstName) && c.lastName.Equals(lastName))
-                {
-                    contactList.Remove(c);
+            Address address = new Address(fName, lName, addr, ct, st, zip, phNum, eMail);
+            Address result = Find(fName);
 
-                    return;
-                }
-            }
-        }
-        public bool CheckName(string firstName, string lastName)
-        {
-            foreach (Contact c in contactList.FindAll(e => e.firstName.Equals(firstName) && e.lastName.Equals(lastName)))
+            if (result == null)
             {
+                addresses.Add(address);
                 return true;
             }
-            return false;
-        }
-        public List<Contact> GetPersonByCityOrState(string cityOrState)
-        {
-            List<Contact> contact = new List<Contact>();
-            foreach (Contact c in contactList.FindAll(e => e.city.Equals(cityOrState) || e.state.Equals(cityOrState)))
+            else
             {
-                contact.Add(c);
-            }
-            return contact;
-        }
-        public void SortByName()
-        {
-            contactList.Sort((contact1, contact2) => contact1.firstName.CompareTo(contact2.firstName));
-            foreach (Contact c in contactList)
-            {
-                Console.WriteLine(c.ToString());
+                return false;
             }
         }
-        public void SortByCity()
+
+        public bool Remove(string name)
         {
-            contactList.Sort((contact1, contact2) => contact1.city.CompareTo(contact2.city));
-            foreach (Contact c in contactList)
+            Address addr = Find(name);
+
+            if (addr != null)
             {
-                Console.WriteLine(c.ToString());
+                addresses.Remove(addr);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
-        public void SortByState()
+
+        public void List(Action<Address> action)
         {
-            contactList.Sort((contact1, contact2) => contact1.state.CompareTo(contact2.state));
-            foreach (Contact c in contactList)
-            {
-                Console.WriteLine(c.ToString());
-            }
+            addresses.ForEach(action);
         }
-        public void SortByZipCode()
+
+        public bool isEmpty()
         {
-            contactList.Sort((contact1, contact2) => contact1.zipCode.CompareTo(contact2.zipCode));
-            foreach (Contact c in contactList)
-            {
-                Console.WriteLine(c.ToString());
-            }
+            return (addresses.Count == 0);
+        }
+
+        public Address Find(string name)
+        {
+            Address addr = addresses.Find((a) => a.firstName == name);
+            return addr;
         }
     }
 }

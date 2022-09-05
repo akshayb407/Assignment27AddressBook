@@ -1,0 +1,21 @@
+﻿[
+  {
+    "name": "Akshay",
+    "phone": "8087148746",
+    "email": "abc@gmail.com",
+    "address": "Katraj",
+    "city": "Pune",
+    "state": "MH",
+    "zip": "502103"
+  },
+  {
+    "name": "Dravid",
+    "phone": "9898878776",
+    "email": "Dravid@bcci.com",
+    "address": "ElectronicWada",
+    "city": "Bangalore",
+    "state": "KN",
+    "zip": "565455"
+  }
+]
+

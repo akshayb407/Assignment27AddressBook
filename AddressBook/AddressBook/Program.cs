@@ -11,7 +11,9 @@ namespace AddressBook
             ReadWriteCSV.CsvReadWrite();
             //#endregion
 
-            
+            #region UC15
+            ReadWriteJSON.csvToJSON();
+            #endregion
         }
     }
 }
